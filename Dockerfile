@@ -1,14 +1,13 @@
 FROM ubuntu:jammy
 
 RUN apt update \
-    && DEBIAN_FRONTEND=noninteractive apt install -y apt-utils \
     && DEBIAN_FRONTEND=noninteractive apt upgrade -y \
     && DEBIAN_FRONTEND=noninteractive apt install -y \
-        netcat-openbsd iputils-ping traceroute tcptraceroute iputils-tracepath iproute2 \
-        mysql-client postgresql-client \
+        bash zsh netcat-openbsd iputils-ping traceroute tcptraceroute iputils-tracepath iproute2 \
+        mysql-client postgresql-client bind9-host nmap \
     && rm -rf /var/lib/apt/lists/*
 
-ADD files/start.sh /usr/loca/bin
+ADD files/start.sh /usr/local/bin/start.sh
 CMD ["/bin/bash", "/usr/local/bin/start.sh"]
 
 LABEL org.label-schema.build-date=$BUILD_DATE \
