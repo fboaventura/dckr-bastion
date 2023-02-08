@@ -6,7 +6,6 @@ echo docker buildx build \
   --build-arg BUILD_DATE=$(date -u +"%Y-%m-%dT%H:%M:%SZ") \
   --build-arg VERSION=$(xargs <VERSION) \
   --build-arg VCS_REF=$(git rev-parse --short HEAD) \
-  --tag "${DOCKER_REPO}:latest" \
   --tag "${IMAGE_NAME}" .
 
 docker buildx build \
@@ -14,5 +13,4 @@ docker buildx build \
   --build-arg BUILD_DATE="$(date -u +"%Y-%m-%dT%H:%M:%SZ")" \
   --build-arg VERSION="$(xargs <VERSION)" \
   --build-arg VCS_REF="$(git rev-parse --short HEAD)" \
-  --tag "${DOCKER_REPO}:latest" \
   --tag "${IMAGE_NAME}" .
