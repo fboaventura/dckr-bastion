@@ -1,4 +1,4 @@
-FROM ubuntu:jammy
+FROM ubuntu:kinetic
 
 RUN apt update \
     && DEBIAN_FRONTEND=noninteractive apt upgrade -y \
