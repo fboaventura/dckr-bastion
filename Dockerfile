@@ -1,4 +1,4 @@
-FROM ubuntu:kinetic
+FROM ubuntu:noble
 
 RUN apt update \
     && DEBIAN_FRONTEND=noninteractive apt upgrade -y \
