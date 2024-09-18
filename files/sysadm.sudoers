@@ -1,0 +1,17 @@
+# Sudoers file to limit the commands that sysadm can run
+
+# User alias specification
+User_Alias SYSADM = sysadm
+
+# Cmnd alias specification
+Cmnd_Alias NETCAT = /usr/bin/nc, /usr/bin/ncat, /usr/bin/nc.traditional, /usr/bin/nc.openbsd, /usr/bin/ncat.openbsd
+Cmnd_Alias NETMON = /usr/bin/iftop, /usr/bin/iptraf, /usr/bin/iotop, /usr/bin/strace, /usr/bin/ltrace
+Cmnd_Alias SYSMON = /usr/bin/iostat, /usr/bin/sar, /usr/bin/vmstat, /usr/bin/mpstat, /usr/bin/nmon, /usr/bin/htop, /usr/bin/atop
+Cmnd_Alias APT = /usr/bin/apt-get, /usr/bin/apt-cache, /usr/bin/dpkg, /usr/bin/dpkg-reconfigure, /usr/bin/apt
+Cmnd_Alias SYSADM_CMDS = /usr/bin/kill, /usr/bin/killall, /usr/bin/pkill
+
+# Runas alias specification
+Runas_Alias ROOT = root
+
+# User privilege specification
+SYSADM ALL=(ROOT) NOPASSWD: NETCAT, NETMON, SYSMON, APT, SYSADM_CMDS
