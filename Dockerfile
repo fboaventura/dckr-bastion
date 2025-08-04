@@ -55,6 +55,8 @@ COPY files/sysadm.sudoers /etc/sudoers.d/sysadm
 
 CMD ["/bin/bash", "/usr/local/bin/start.sh"]
 
+WORKDIR /sysadm
+
 USER sysadm
 
 ARG BUILD_DATE
