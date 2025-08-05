@@ -100,7 +100,7 @@ spec:
   serviceAccountName: devops-bastion-sa
   containers:
     - name: devops-bastion
-      image: fboaventura/dckr-bastion:1.4.0
+      image: fboaventura/dckr-bastion:1.4.1
       imagePullPolicy: Always
       securityContext:
         runAsNonRoot: true
@@ -119,6 +119,9 @@ spec:
       volumeMounts:
         - name: ephemeral
           mountPath: "/tmp"
+  volumes:
+    - name: ephemeral
+      emptyDir: {}
   restartPolicy: Always
 
 ```
