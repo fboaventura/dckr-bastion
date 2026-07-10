@@ -2,7 +2,7 @@
 # Description: Dockerfile for a bastion instance to be used inside a k8s cluster
 # Author: Frederico Freire Boaventura
 
-FROM ubuntu:24.04
+FROM ubuntu:26.04
 
 RUN apt update \
     && DEBIAN_FRONTEND=noninteractive apt upgrade -y \
@@ -11,6 +11,7 @@ RUN apt update \
         bind9-dnsutils \
         bind9-host \
         curl \
+        gnupg \
         ipgrab \
         iproute2 \
         iputils-ping \
@@ -25,11 +26,15 @@ RUN apt update \
         tcpdump \
         tcpreplay \
         tcpslice \
-        tcptrace \
         tcptraceroute \
         tmux \
         traceroute \
+        wget \
         zsh \
+    && wget -qO - https://www.mongodb.org/static/pgp/server-7.0.asc | sudo gpg --dearmor -o /usr/share/keyrings/mongodb-server-7.0.gpg \
+    && echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list \
+    && apt update \
+    && apt install -y mongodb-mongosh \
     && rm -rf /var/lib/apt/lists/* \
     && apt clean \
     && apt autoclean \
